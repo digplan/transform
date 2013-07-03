@@ -1,0 +1,23 @@
+{
+  "name": "transform",
+  "description": "Reference code fdr the transform protocol",
+  "url": "http://github.com/dpweb/transform/",
+  "keywords": [
+    "util",
+    "nodejs",
+    "configuration",
+    "config",
+    "database"
+  ],
+  "author": {
+    "name": "C Borkert",
+    "email": "ILIKECHEESE@dpsw.info"
+  },
+  "dependencies": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dpweb/transform.git"
+  },
+  "version": "1.0.0"
+}
