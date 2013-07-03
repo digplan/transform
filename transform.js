@@ -1,6 +1,8 @@
-var u = require('util');
+var isArray = function(o){
+	return Object.prototype.toString.call(o) === '[object Array]';
+}
 
-module.exports = {
+Transformer = {
 		transform: function(i, t){
 			o = [];
 			i.forEach(function(item){
@@ -8,7 +10,7 @@ module.exports = {
 				for(key in item){
 					if(typeof(t[key]) === 'function'){
 						orec[key] = t[key](item[key]);
-					} else if(u.isArray(t[key])) {
+					} else if(isArray(t[key])) {
 						var v = item[key];
 						if(t[key].length === 2) v = t[key][1](v);
 						orec[t[key][0]] = v;
@@ -18,5 +20,7 @@ module.exports = {
 			})
 			return o;
 		}
-	}
+}
 
+if(module && 'undefined' !== typeof(module.exports)) 
+	module.exports = Transformer;
