@@ -2,8 +2,8 @@ Transform
 =========
 Reference code for the Transform protocol.    
 
-The transform protocol provides a very simple expression of the instructions of transforming a data record from one format to another. Such transformations are common in many areas of programming, but especially in business applications, where billions of dollars are spent
-integrating various applications.    
+The Transform protocol provides a very simple expression of the instructions of transforming a data record from one format to another. Such transformations are common in many areas of programming, but especially in business applications, where billions of dollars are spent
+integrating various info-systems.    
 
 A Transform document has two uses, as a representation of how the data fields of a record are to be modified between two systems, and as the actual input to a simple program that does the transformation.  A working program (reference code for the protocol) is provided here.    
 
