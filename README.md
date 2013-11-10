@@ -18,51 +18,27 @@ The values for each key must be one of the following:
 + A Javascript array with one item, a string which defines the key in the destination document.  The value in the destination document is unchanged.     
 + Any key in the source document that is not in the transform object, is not carried over to the destination document.
     
-An example..
+Example..
 ````
+$ npm install tr
+
+var transformer = require('tr');
+
 var before = [
-	{name: 'Chris', age: 42, home:'IL', height:5 },
-	{name: 'Barack', age:50, home:'IL', height:6 },
-	{name: 'George', age:65, home:'TX', height:5 },
-	{name: 'Bill', age:70, home:'NY', height:6 }
+    {name: 'Chris', age: 42, home:'IL', height:5 },
+    {name: 'Barack', age:50, home:'IL', height:6 },
+    {name: 'George', age:65, home:'TX', height:5 },
+    {name: 'Bill', age:70, home:'NY', height:6 }
 ]
 
-// the Transform document
 var mapping = {
-	name: function(s) { return s + '!'},
-	age: function(i) { return i > 50 ? 'old' : 'not old' },
-	home: ['place', function(s){ return s }],
-	height: ['IQ']
+    name: function(s) { return s + '!'},
+    age: function(i) { return i > 50 ? 'old' : 'not old' },
+    home: ['place', function(s){ return s }],
+    height: ['IQ']
 }
 
-var after = transformer.transform(before, mapping);
+var after = transformer.transform(before, mapping)
 
-==>
-
-[
-    {
-        "name": "Chris!",
-        "age": "not old",
-        "place": "IL",
-        "IQ": 5
-    },
-    {
-        "name": "Barack!",
-        "age": "not old",
-        "place": "IL",
-        "IQ": 6
-    },
-    {
-        "name": "George!",
-        "age": "old",
-        "place": "TX",
-        "IQ": 5
-    },
-    {
-        "name": "Bill!",
-        "age": "old",
-        "place": "NY",
-        "IQ": 6
-    }
-]
+console.log(JSON.stringify(after, null, 4));
 ````
