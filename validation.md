@@ -1,6 +1,6 @@
-Validating data with a schema using Transform
+Validating data with a schema
 =========
-Transform can be used to validate JSON data, for instance for checking before inserting into a database.
+Transform can be used to validate JSON data, for instance before inserting into a database.
     
 Example..
 ````
