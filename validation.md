@@ -14,10 +14,12 @@ var before = [
 // validate using a validator, older than 50 is an invalid record
 var validator = {
   name: function(s) { return s },
-  age: function(i) { return i < 50 } // over 50 returns false
+  age: function(i) { return i < 50 }, // over 50 returns false
+  home: function(s) { return s },
+  height: function(s) { return s } 
 }
 
-var error = require('./transform.js').validator(before, validator);
+var error = transformer.validator(before, validator);
 if(error) console.log('failed records', error);
 else console.log('validation OK');
 

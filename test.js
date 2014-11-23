@@ -20,9 +20,20 @@ console.log(JSON.stringify(after, null, 4));
 // validate using a validator, older than 50 is an invalid record
 var validator = {
   name: function(s) { return s },
-  age: function(i) { return i < 50 } // over 50 returns false
+  age: function(i) { return i < 50 }, // over 50 returns false
+  home: function(s) { return s },
+  height: function(s) { return s } 
 }
 
 var error = transformer.validator(before, validator);
 if(error) console.log('failed records', error);
 else console.log('validation OK');
+
+// fail when input has keys not in the validator
+var bad_validator = {
+  name: function(s) { return s },
+  age: function(i) { return i < 50 } // over 50 returns false
+}
+var error = transformer.validator(before, bad_validator);
+if(error) console.log('bad input', error);
+else console.log('test is not right');

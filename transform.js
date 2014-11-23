@@ -21,11 +21,17 @@ Transformer = {
 			return o;
 		},
 		validator: function(i, t){
+			var fail;
+			i.forEach(function(rec){
+				for(key in rec){
+				  if(!t.hasOwnProperty(key)) return fail = key;
+				}
+			});
+			if(fail) return fail;
 			var res = this.transform(i, t), badarr = [], ret = {};
 			res.forEach(function(rec){
 			  for(i in rec) if(!rec[i]) badarr.push(rec);
-			})
-		    console.log(badarr)
+			});
 			return badarr.length ? badarr : '';
 		}
 }
