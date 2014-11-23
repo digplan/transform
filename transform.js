@@ -20,7 +20,7 @@ Transformer = {
 			})
 			return o;
 		},
-		validator: function(i, t){
+		validate: function(i, t){
 			var fail;
 			i.forEach(function(rec){
 				for(key in rec){
