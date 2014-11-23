@@ -4,24 +4,26 @@ Transform can be used to validate JSON data, for instance before inserting into 
     
 Example..
 ````
-var transformer = require('./transform.js');
-
 var before = [
-    {name: 'badrecord', age: 'Not a num' },
-    {name: 'goodrecord', age: 50 }
+	{name: 'Chris', age: 42, home:'IL', height:5 },
+	{name: 'Barack', age:50, home:'IL', height:6 },
+	{name: 'George', age:65, home:'TX', height:5 },
+	{name: 'Bill', age:70, home:'NY', height:6 }
 ]
 
-var mapping = {
-	name: function(s) { return s },
-    age: function(i) { return Number(i) }
+// validate using a validator, older than 50 is an invalid record
+var validator = {
+  name: function(s) { return s },
+  age: function(i) { return i < 50 } // over 50 returns false
 }
 
-var after = transformer.transform(before, mapping)
+var error = require('./transform.js').validator(before, validator);
+if(error) console.log('failed records', error);
+else console.log('validation OK');
 
-console.log(JSON.stringify(before, null, 4));
-console.log(JSON.stringify(after, null, 4));
-
-after.forEach(function(rec){
-  if(!rec.age) console.log('record ' + rec.name + ' failed');
-})
+/*
+failed records [ { name: 'Barack', age: false },
+  { name: 'George', age: false },
+  { name: 'Bill', age: false } ]
+*/
 ````

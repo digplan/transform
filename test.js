@@ -15,5 +15,14 @@ var mapping = {
 }
 
 var after = transformer.transform(before, mapping)
-
 console.log(JSON.stringify(after, null, 4));
+
+// validate using a validator, older than 50 is an invalid record
+var validator = {
+  name: function(s) { return s },
+  age: function(i) { return i < 50 } // over 50 returns false
+}
+
+var error = transformer.validator(before, validator);
+if(error) console.log('failed records', error);
+else console.log('validation OK');

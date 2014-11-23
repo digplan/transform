@@ -42,3 +42,5 @@ var after = transformer.transform(before, mapping)
 
 console.log(JSON.stringify(after, null, 4));
 ````
+
+Validation of records can also be done, see validation.md
